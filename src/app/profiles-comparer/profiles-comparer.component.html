@@ -1,0 +1,95 @@
+<div class="container">
+    <div class = "input-containers">
+    <div class="input-container">
+        <input [(ngModel)]="gitHubName1ProvidedByUser" placeholder="Enter GitHub username 1">
+        <button class="input-button" (click)="firstUser()">Submit</button>
+    </div>
+    <div class="input-container">
+        <input [(ngModel)]="gitHubName2ProvidedByUser" placeholder="Enter GitHub username 2">
+        <button class="input-button"  (click)="secondUser()">Submit</button>
+    </div>
+</div>
+    <div class="compare-button">
+        <button  (click)="compare()">Compare</button>
+    </div>
+    <div *ngIf="anyUserCreated"  class="user-container">
+        <div class="user-info left" *ngIf="user1CreatedFromGitHubInfoService">
+            <div class="center">
+                <h2 class="bigger-text">{{ user1CreatedFromGitHubInfoService.login }}</h2>
+              </div>
+              <div class="profile">
+                <img [src]="user1CreatedFromGitHubInfoService.avatar_url" alt="User 1 Profile Pic" class="profile-pic">
+              </div>
+              <div class="languagesAndDetails">
+              <div class="details">
+                <p class="big-text">Repositories: {{ user1CreatedFromGitHubInfoService.public_repos }}</p>
+                <p class="big-text">Forks: {{ user1CreatedFromGitHubInfoService.public_gists }}</p>
+                <p class="big-text">Likes: {{ user1CreatedFromGitHubInfoService.followers }}</p>
+              </div>
+              <div class="languages">
+                <h3 class="big-text">Languages Used:</h3>
+                <ul>
+                  <li *ngFor="let languageUsage of user1LanguageUsage" class="language-list">
+                    {{ languageUsage.language }}: {{ languageUsage.count }}
+                  </li>
+                </ul>
+            </div>
+              </div>
+            </div>
+        
+          <div class="user-info right" *ngIf="user2CreatedFromGitHubInfoService">
+            <div class="center">
+                <h2 class="bigger-text">{{ user2CreatedFromGitHubInfoService.login }}</h2>
+              </div>
+              <div class="profile">
+                <img [src]="user2CreatedFromGitHubInfoService.avatar_url" alt="User 2 Profile Pic" class="profile-pic">
+              </div>
+              <div class="languagesAndDetails">
+              <div class="details">
+                <p class="big-text">Repositories: {{ user2CreatedFromGitHubInfoService.public_repos }}</p>
+                <p class="big-text">Forks: {{ user2CreatedFromGitHubInfoService.public_gists }}</p>
+                <p class="big-text">Likes: {{ user2CreatedFromGitHubInfoService.followers }}</p>
+              </div>
+              <div class="languages">
+                <h3 class="big-text">Languages Used:</h3>
+                <ul>
+                  <li *ngFor="let languageUsage of user2LanguageUsage" class="language-list">
+                    {{ languageUsage.language }}: {{ languageUsage.count }}
+                  </li>
+                </ul>
+            </div>
+              </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="user-info" *ngIf="user1CreatedFromGitHubInfoService">
+ 
+
+  <h3>Languages Used:</h3>
+  <ul>
+    <li *ngFor="let language of user1CreatedFromGitHubInfoService.languages.keys()">{{language}} , {{user1CreatedFromGitHubInfoService.languages.get(language)}}</li>
+    
+  </ul>
+</div>
+
+<div class="user-info" *ngIf="user2CreatedFromGitHubInfoService">
+  
+
+  <h3>Languages Used:</h3>
+  <ul>
+    <li *ngFor="let language of user2CreatedFromGitHubInfoService.languages.keys()">{{language}} , {{user2CreatedFromGitHubInfoService.languages.get(language)}}</li>
+    
+  </ul>
+</div> -->

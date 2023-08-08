@@ -7,4 +7,5 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'angular-github-profiles-comparer';
+  logopath = "../assets/Black-Github-Logo-PNG-Photo.png"
 }
