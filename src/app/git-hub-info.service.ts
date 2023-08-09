@@ -27,14 +27,14 @@ export class GitHubInfoService {
     const reposUrl = `https://api.github.com/users/${gitHubName}/repos`;
     const repos = await this.getAllRepos(reposUrl);
 
-    for (const repo of repos) {
-      console.log(repo)
-      const languagesUrl = `https://api.github.com/repos/${gitHubName}/${repo.name}/languages`;
-      const languages = await firstValueFrom(this.http.get(languagesUrl, {
-        headers: this.getHeaders(),
-      }));
-      repo.languages = languages;
-    }
+    // for (const repo of repos) {
+    //   console.log(repo)
+    //   const languagesUrl = `https://api.github.com/repos/${gitHubName}/${repo.name}/languages`;
+    //   const languages = await firstValueFrom(this.http.get(languagesUrl, {
+    //     headers: this.getHeaders(),
+    //   }));
+    //   repo.languages = languages;
+    // }
 
     return { ...userData, repos };
   }
