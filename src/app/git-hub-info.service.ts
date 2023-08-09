@@ -1,12 +1,13 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+import { environment } from 'src/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class GitHubInfoService {
-  private accessToken = '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';
+  private accessToken = environment.gitHubToken
 
   constructor(private http: HttpClient) {}
 
