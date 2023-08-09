@@ -8,97 +8,52 @@ import { LeaderboardService } from '../leaderboard.service';
 })
 export class LeaderboardComponent implements OnInit {
   leaderboardData: any[] = [];
-  sortedByRepositoriesAsc:boolean = false;
-  sortedByForksAsc:boolean=false;
-  sortedByFollowersAsc:boolean=false;
-  sortedByLanguagesAsc:boolean = false;
-  repoSort:string = "Repos ▼"
-  forkSort:string="Forks ▼"
-  followersSort:string="Followers ▼"
-  languagesSort:string="Languages ▼"
-  buttonsIndicator:boolean[]=[false,false,false,false]
+  // sortedByRepositoriesAsc:boolean = false;
+  // sortedByForksAsc:boolean=false;
+  // sortedByFollowersAsc:boolean=false;
+  // sortedByLanguagesAsc:boolean = false;
+
+  // buttonsIndicator:boolean[]=[false,false,false,false]
   constructor(private leaderboardService: LeaderboardService) {}
 
   ngOnInit() {
     this.leaderboardData = this.leaderboardService.getLeaderboardData();
     console.log(this.leaderboardData);
   }
- 
-  sortByRepositories()
-  {
-    if(this.sortedByRepositoriesAsc)
-    {
-      this.leaderboardData.sort((a,b)=>a.public_repos-b.public_repos)
-      this.sortedByRepositoriesAsc=!this.sortedByRepositoriesAsc
-      this.repoSort="Repos ▼"
-      this.setButtons(0)
-      return 
+
+  sortingOptions = [
+    { label: 'Repos ▼', field: 'public_repos', asc: false },
+    { label: 'Forks ▼', field: 'forks', asc: false },
+    { label: 'Followers ▼', field: 'followers', asc: false },
+    { label: 'Languages ▼', field: 'languages', asc: false },
+  ];
+  buttonsIndicator: boolean[] = [false, false, false, false];
+
+  sortBy(option: any, index: number) {
+    const { field, asc } = option;
+
+    if (field === 'languages') {
+      this.leaderboardData.sort((a, b) =>
+        asc ? a.languages.size - b.languages.size : b.languages.size - a.languages.size
+      );
+    } else {
+      this.leaderboardData.sort((a, b) =>
+        asc ? a[field] - b[field] : b[field] - a[field]
+      );
     }
-    this.leaderboardData.sort((a,b)=>b.public_repos-a.public_repos)
-    this.sortedByRepositoriesAsc=!this.sortedByRepositoriesAsc
-    this.repoSort="Repos ▲"
-    this.setButtons(0)
-    
-  }
-  sortByForks()
-  {
-    if(this.sortedByForksAsc)
-    {
-      this.leaderboardData.sort((a,b)=>a.forks-b.forks)
-      this.sortedByForksAsc=!this.sortedByForksAsc
-      this.forkSort ="Forks ▼"
-      this.setButtons(1)
-      return
+    if (asc) {
+      option.label = option.label.substring(0, option.label.length - 1) + '▲';
+    } else {
+      option.label = option.label.substring(0, option.label.length - 1) + '▼';
     }
-    this.leaderboardData.sort((a,b)=>b.forks-a.forks)
-    this.sortedByForksAsc=!this.sortedByForksAsc
-    this.forkSort="Forks ▲"
-    this.setButtons(1)
-    
-  }
-  sortByFollowers()
-  {
-    if(this.sortedByFollowersAsc)
-    {
-      this.leaderboardData.sort((a,b) => a.followers-b.followers)
-      this.sortedByFollowersAsc=!this.sortedByFollowersAsc
-      this.followersSort = "Followers ▼"
-      this.setButtons(2)
-      return
-    }
-    this.leaderboardData.sort((a,b) => b.followers-a.followers)
-    this.sortedByFollowersAsc=!this.sortedByFollowersAsc
-    this.followersSort = "Followers ▲"
-    this.setButtons(2)
+    option.asc = !asc;
+
+    this.setButtons(index);
   }
 
-  sortByLanguages()
-  {
-    if(this.sortedByLanguagesAsc)
-    {
-      this.leaderboardData.sort((a,b) => a.languages.size -b.languages.size)
-      this.sortedByLanguagesAsc=!this.sortedByLanguagesAsc
-      this.languagesSort="Languages ▼"
-      this.setButtons(3)
-      return 
-    }
-    this.leaderboardData.sort((a,b) => b.languages.size-a.languages.size)
-    this.sortedByLanguagesAsc=!this.sortedByLanguagesAsc
-    this.languagesSort = "Languages ▲"
-    this.setButtons(3)
-   
-  }
-
-  setButtons(numOfButton:number)
-  {
-   for( let i=0;i<this.buttonsIndicator.length; i++)
-   {
-    if(i==numOfButton)
-    {
-      this.buttonsIndicator[i]=true
-      continue
-    }
-    this.buttonsIndicator[i]=false
-   }
+  setButtons(numOfButton: number) {
+    this.buttonsIndicator = this.buttonsIndicator.map(
+      (_, i) => i === numOfButton
+    );
   }
 }

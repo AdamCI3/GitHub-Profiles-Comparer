@@ -2,10 +2,10 @@
 <div class="leaderboard-container">
 <div class="buttons">
  
-<button [class.clicked]="buttonsIndicator[0]" class="sort-button" (click)="sortByRepositories()">{{repoSort}}</button>
-<button [class.clicked]="buttonsIndicator[1]" class="sort-button" (click)="sortByForks()">{{forkSort}}</button>
-<button [class.clicked]="buttonsIndicator[2]" class="sort-button" (click)="sortByFollowers()">{{followersSort}}</button>
-<button [class.clicked]="buttonsIndicator[3]" class="sort-button" (click)="sortByLanguages()">{{languagesSort}}</button>
+<button [class.clicked]="buttonsIndicator[0]" class="sort-button" (click)="sortBy(sortingOptions[0],0)">{{sortingOptions[0].label}}</button>
+<button [class.clicked]="buttonsIndicator[1]" class="sort-button" (click)="sortBy(sortingOptions[1],1)">{{sortingOptions[1].label}}</button>
+<button [class.clicked]="buttonsIndicator[2]" class="sort-button" (click)="sortBy(sortingOptions[2],2)">{{sortingOptions[2].label}}</button>
+<button [class.clicked]="buttonsIndicator[3]" class="sort-button" (click)="sortBy(sortingOptions[3],3)">{{sortingOptions[3].label}}</button>
 </div>
 </div>
 

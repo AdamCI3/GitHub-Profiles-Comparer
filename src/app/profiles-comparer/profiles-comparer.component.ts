@@ -43,8 +43,8 @@ export class ProfilesComparerComponent {
       forks: this.calculateForks(userDataFromService.repos),
       followers: userDataFromService.followers,
       repos: userDataFromService.repos,
-
       languages: this.calculateLanguageUsage(userDataFromService.repos),
+  
     };
     console.log(userDataFromService.repos);
     const userLanguageUsage = this.convertCountToPercentage(
