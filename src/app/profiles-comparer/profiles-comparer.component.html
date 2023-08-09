@@ -1,12 +1,13 @@
+
 <div class="container">
     <div class="input-containers">
         <div class="input-container">
             <input [(ngModel)]="gitHubName1ProvidedByUser" placeholder="Enter GitHub username 1">
-            <button class="input-button" (click)="getUserData(1)">Submit</button>
+            <button   class="input-button" (click)="getUserData(1)"> <i class="gg-arrow-down"></i>  Submit</button>
         </div>
         <div class="input-container">
             <input [(ngModel)]="gitHubName2ProvidedByUser" placeholder="Enter GitHub username 2">
-            <button class="input-button" (click)="getUserData(2)">Submit</button>
+            <button class="input-button" (click)="getUserData(2)"> <i class="gg-arrow-down"></i>Submit</button>
         </div>
     </div>
     <div class="compare-button">
@@ -17,7 +18,7 @@
     <h2 class="drawh2" *ngIf="winner=='DRAW'">{{ winner }}</h2>
     <div *ngIf="anyUserCreated" class="user-container">
         <div class="user-info left" *ngIf="user1CreatedFromGitHubInfoService"
-            [ngClass]="{'winner': winner === user1CreatedFromGitHubInfoService?.login}">
+            [ngClass]="{'winner': winner === user1CreatedFromGitHubInfoService.login}">
             <div class="center">
                 <h2 class="bigger-text">{{ user1CreatedFromGitHubInfoService.login }}</h2>
             </div>
@@ -29,9 +30,11 @@
             </div>
             <div class="languagesAndDetails">
                 <div class="details">
+                    
                     <p class="big-text">Repositories: {{ user1CreatedFromGitHubInfoService.public_repos }}</p>
                     <p class="big-text">Forks: {{ user1CreatedFromGitHubInfoService.forks }}</p>
                     <p class="big-text">Followers: {{ user1CreatedFromGitHubInfoService.followers }}</p>
+                    <button class="adding-button"  (click)="addToLeaderboard(user1CreatedFromGitHubInfoService)"> <i class="gg-desktop"></i>Add to leaderboard</button>
                 </div>
                 <div class="languages">
                     <h3 class="big-text">Languages usage:</h3>
@@ -45,7 +48,7 @@
         </div>
 
         <div class="user-info right" *ngIf="user2CreatedFromGitHubInfoService"
-            [ngClass]="{'winner': winner === user2CreatedFromGitHubInfoService?.login}">
+            [ngClass]="{'winner': winner === user2CreatedFromGitHubInfoService.login}">
             <div class="center">
                 <h2 class="bigger-text">{{ user2CreatedFromGitHubInfoService.login }}</h2>
             </div>
@@ -60,6 +63,7 @@
                     <p class="big-text">Repositories: {{ user2CreatedFromGitHubInfoService.public_repos }}</p>
                     <p class="big-text">Forks:{{ user2CreatedFromGitHubInfoService.forks}} </p>
                     <p class="big-text">Followers: {{ user2CreatedFromGitHubInfoService.followers }}</p>
+                    <button class="adding-button" (click)="addToLeaderboard(user2CreatedFromGitHubInfoService)"> <i class="gg-desktop"></i>Add to Leaderboard</button>
                 </div>
                 <div class="languages">
                     <h3 class="big-text">Languages usage:</h3>

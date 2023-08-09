@@ -1,5 +1,14 @@
 <div class="logo-container">
-<img class="gitHubLogo" [src]="logopath" alt="User 1 Profile Pic" >
-<h1>GitHub Acc Comparer</h1>
-</div>
-<app-profiles-comparer/>
+    <img class="gitHubLogo" [src]="logopath" alt="User 1 Profile Pic">
+    <h1>GitHub Acc Comparer</h1>
+  </div>
+  
+  <button  class = "toggleButton"(click)="toggleView()"> <i class="gg-arrows-exchange-alt"></i>{{buttonName()}}</button>
+  
+  <ng-container *ngIf="showComparer; else leaderboard">
+    <app-profiles-comparer></app-profiles-comparer>
+  </ng-container>
+  
+  <ng-template #leaderboard>
+    <app-leaderboard></app-leaderboard>
+  </ng-template>

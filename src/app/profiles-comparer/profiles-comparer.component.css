@@ -1,3 +1,6 @@
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/arrow-down.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/add-r.css');
+@import url('https://unpkg.com/css.gg@2.0.0/icons/css/desktop.css');
 .container {
   display: flex;
   flex-direction: column;
@@ -18,6 +21,9 @@
 }
 .input-button {
   width: 200px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .compare-button {
@@ -130,4 +136,20 @@
     margin: 0px;
     padding: 2px;
     color:#931815
+}
+
+.gg-add-r
+{
+margin: 0px;
+}
+.adding-button
+{
+    padding-top: 2px;
+    display: flex;
+    justify-content: space-evenly;
+    font-size: large;
+}
+
+.gg-desktop{
+    margin-right: 2px;
 }

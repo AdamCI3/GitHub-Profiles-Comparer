@@ -1,0 +1,149 @@
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: wheat;
+  font-size: 35px;
+  margin-top: 0px;
+}
+.bigger-text
+{
+    display: flex;
+    justify-content:center;
+   
+    font-size: 22px;
+    width: 180px;
+}
+.bigger-textuser
+{
+    display: flex;
+   
+   
+    font-size: 22px;
+    width: 190px;
+    justify-content:left;
+}
+.big-text
+{
+    display: flex;
+    justify-content:center;
+   
+    font-size: 15px;
+    width: 180px;
+}
+.big-textuser
+{
+    display: flex;
+   
+   
+    font-size: 15px;
+    width: 200px;
+    justify-content:left;
+}
+
+.center {
+  justify-content: center;
+}
+
+.leaderboard-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.leaderboard {
+  width: 900px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+ 
+  margin-left: 80px;
+  color: white;
+  
+
+}
+.leaderboard-item {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  margin: 5px;
+  border-bottom-style: dotted;
+}
+.leaderboard-item  p{
+ 
+   margin-right:10px;
+  }
+
+.leaderboard-item img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.leaderboard-labels {
+  text-align: center;
+  margin: 10px;
+  font-weight: bold;
+}
+.leaderboard-data {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.leaderboardUsers-item {
+    width: 90%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    margin: 5px;
+    border-bottom-style: dotted;
+  }
+  .leaderboardUsers-item  p{
+     width: 50px;
+     margin-right:10px;
+    }
+  
+  .leaderboardUsers-item img {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    margin-right: 5px;
+  }
+  
+  .leaderboard-labels {
+    text-align: center;
+    margin: 10px;
+    font-weight: bold;
+  }
+  .leaderboard-data {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+.profilePicWithName {
+  display: flex;
+  width: 180px;
+  justify-content:flex-start
+}
+
+.buttons {
+    width: 700px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+    color: white;
+  }
+  .sort-button
+  {
+    background-color: #30363d;
+  }
+  .sort-button.clicked
+  {
+    background-color: #238636;
+  }
+ 

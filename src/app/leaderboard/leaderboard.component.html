@@ -1,0 +1,32 @@
+<h1>Leaderboard</h1>
+<div class="leaderboard-container">
+<div class="buttons">
+ 
+<button [class.clicked]="buttonsIndicator[0]" class="sort-button" (click)="sortByRepositories()">{{repoSort}}</button>
+<button [class.clicked]="buttonsIndicator[1]" class="sort-button" (click)="sortByForks()">{{forkSort}}</button>
+<button [class.clicked]="buttonsIndicator[2]" class="sort-button" (click)="sortByFollowers()">{{followersSort}}</button>
+<button [class.clicked]="buttonsIndicator[3]" class="sort-button" (click)="sortByLanguages()">{{languagesSort}}</button>
+</div>
+</div>
+
+
+<div class="leaderboard-container">
+    <div class="leaderboard">
+        <div class="leaderboard-item" >
+            <div class ="bigger-textuser">User     </div>
+            <div class ="bigger-text">Repos</div>
+            <div class ="bigger-text">Forks</div>
+            <div class ="bigger-text">Followers </div>
+            <div class ="bigger-text">Languages</div>
+        </div>
+        <div class="leaderboardUsers-item" *ngFor="let user of leaderboardData">
+            <div class="profilePicWithName"><img [src]="user.avatar_url" alt="{{ user.login }} Profile Pic">
+                <p>{{ user.login }}</p>
+            </div>
+            <div class ="big-text">{{ user.public_repos }}</div>
+            <div class ="big-text"> {{ user.forks }}</div>
+            <div class ="big-text"> {{ user.followers }}</div>
+            <div class ="big-text"> {{user.languages.size}}</div>
+        </div>
+    </div>
+</div>
