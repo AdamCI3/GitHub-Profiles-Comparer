@@ -18,4 +18,16 @@ export class LeaderboardService {
   getLeaderboardData() {
     return this.leaderboardData;
   }
+
+  deleteFromLeaderBoard(user: GitHubUser) {
+   
+    const index = this.leaderboardData.indexOf(user);
+    
+    if (index !== -1) {
+      
+      this.leaderboardData.splice(index, 1);
+    }
+    
+    console.log(this.leaderboardData);
+  }
 }

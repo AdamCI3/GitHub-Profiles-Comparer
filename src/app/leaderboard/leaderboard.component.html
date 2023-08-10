@@ -18,6 +18,8 @@
             <div class ="bigger-text">Forks</div>
             <div class ="bigger-text">Followers </div>
             <div class ="bigger-text">Languages</div>
+            <div class = "emptyspace"></div>
+           
         </div>
         <div class="leaderboardUsers-item" *ngFor="let user of leaderboardData">
             <div class="profilePicWithName"><img [src]="user.avatar_url" alt="{{ user.login }} Profile Pic">
@@ -27,6 +29,7 @@
             <div class ="big-text"> {{ user.forks }}</div>
             <div class ="big-text"> {{ user.followers }}</div>
             <div class ="big-text"> {{user.languages.size}}</div>
+            <button (click)="deleteFromLeaderboard(user)" class="delete-button">X</button>
         </div>
     </div>
 </div>

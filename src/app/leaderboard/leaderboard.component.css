@@ -146,4 +146,14 @@ h1 {
   {
     background-color: #238636;
   }
- 
+ .emptyspace
+ {
+    width: 25px;
+ }
+ .delete-button{
+    background-color:#931815 ;
+ }
+ .delete-button:hover{
+    transition: 0.5s;
+    background-color:#6e0907 ;
+ }

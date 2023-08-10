@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeaderboardService } from '../leaderboard.service';
+import { GitHubUser } from '../profiles-comparer/gitHubUser';
 
 @Component({
   selector: 'app-leaderboard',
@@ -8,12 +9,7 @@ import { LeaderboardService } from '../leaderboard.service';
 })
 export class LeaderboardComponent implements OnInit {
   leaderboardData: any[] = [];
-  // sortedByRepositoriesAsc:boolean = false;
-  // sortedByForksAsc:boolean=false;
-  // sortedByFollowersAsc:boolean=false;
-  // sortedByLanguagesAsc:boolean = false;
-
-  // buttonsIndicator:boolean[]=[false,false,false,false]
+  
   constructor(private leaderboardService: LeaderboardService) {}
 
   ngOnInit() {
@@ -55,5 +51,9 @@ export class LeaderboardComponent implements OnInit {
     this.buttonsIndicator = this.buttonsIndicator.map(
       (_, i) => i === numOfButton
     );
+  }
+  deleteFromLeaderboard(user:GitHubUser)
+  {
+    this.leaderboardService.deleteFromLeaderBoard(user)
   }
 }
