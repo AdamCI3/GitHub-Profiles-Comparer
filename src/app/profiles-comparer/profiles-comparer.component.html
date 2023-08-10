@@ -1,9 +1,8 @@
-
 <div class="container">
     <div class="input-containers">
         <div class="input-container">
             <input [(ngModel)]="gitHubName1ProvidedByUser" placeholder="Enter GitHub username 1">
-            <button   class="input-button" (click)="getUserData(1)"> <i class="gg-arrow-down"></i>  Submit</button>
+            <button class="input-button" (click)="getUserData(1)"> <i class="gg-arrow-down"></i> Submit</button>
         </div>
         <div class="input-container">
             <input [(ngModel)]="gitHubName2ProvidedByUser" placeholder="Enter GitHub username 2">
@@ -30,11 +29,14 @@
             </div>
             <div class="languagesAndDetails">
                 <div class="details">
-                    
+
                     <p class="big-text">Repositories: {{ user1CreatedFromGitHubInfoService.public_repos }}</p>
                     <p class="big-text">Forks: {{ user1CreatedFromGitHubInfoService.forks }}</p>
                     <p class="big-text">Followers: {{ user1CreatedFromGitHubInfoService.followers }}</p>
-                    <button class="adding-button"  (click)="addToLeaderboard(user1CreatedFromGitHubInfoService)"> <i class="gg-desktop"></i>Add to leaderboard</button>
+                    <button *ngIf="!isInLeaderboard(user1CreatedFromGitHubInfoService)" class="adding-button"
+                        (click)="addToLeaderboard(user1CreatedFromGitHubInfoService)"> <i class="gg-desktop"></i>Add to
+                        leaderboard</button>
+                    <p *ngIf="isInLeaderboard(user1CreatedFromGitHubInfoService)">User in leaderboard!</p>
                 </div>
                 <div class="languages">
                     <h3 class="big-text">Languages usage:</h3>
@@ -63,7 +65,10 @@
                     <p class="big-text">Repositories: {{ user2CreatedFromGitHubInfoService.public_repos }}</p>
                     <p class="big-text">Forks:{{ user2CreatedFromGitHubInfoService.forks}} </p>
                     <p class="big-text">Followers: {{ user2CreatedFromGitHubInfoService.followers }}</p>
-                    <button class="adding-button" (click)="addToLeaderboard(user2CreatedFromGitHubInfoService)"> <i class="gg-desktop"></i>Add to Leaderboard</button>
+                    <button *ngIf="!isInLeaderboard(user2CreatedFromGitHubInfoService)" class="adding-button"
+                        (click)="addToLeaderboard(user2CreatedFromGitHubInfoService)"> <i class="gg-desktop"></i>Add to
+                        leaderboard</button>
+                    <p *ngIf="isInLeaderboard(user2CreatedFromGitHubInfoService)">User in leaderboard!</p>
                 </div>
                 <div class="languages">
                     <h3 class="big-text">Languages usage:</h3>

@@ -10,9 +10,20 @@ export class LeaderboardService {
   constructor() {}
 
   addUserrToLeaderboard(userData: GitHubUser) {
-    if (!this.leaderboardData.includes(userData)) {
+    const existingUser = this.leaderboardData.find(user => user.login === userData.login);
+  
+    if (!existingUser) {
       this.leaderboardData.push(userData);
     }
+  }
+  isInLeaderBoard(userData:GitHubUser)
+  {
+    const existingUser = this.leaderboardData.find(user => user.login === userData.login);
+  
+    if (!existingUser) {
+      return false
+    }
+    return true
   }
 
   getLeaderboardData() {
@@ -28,6 +39,6 @@ export class LeaderboardService {
       this.leaderboardData.splice(index, 1);
     }
     
-    console.log(this.leaderboardData);
+    
   }
 }

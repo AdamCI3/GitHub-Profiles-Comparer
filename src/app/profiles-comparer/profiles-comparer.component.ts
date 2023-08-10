@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { GitHubInfoService } from '../git-hub-info.service';
 import { GitHubUser } from './gitHubUser';
 import { Repo } from './repo';
@@ -10,7 +10,7 @@ import { LeaderboardService } from '../leaderboard.service';
   templateUrl: './profiles-comparer.component.html',
   styleUrls: ['./profiles-comparer.component.css'],
 })
-export class ProfilesComparerComponent {
+export class ProfilesComparerComponent implements OnInit {
   anyUserCreated: boolean = false;
   gitHubName1ProvidedByUser: string = '';
   gitHubName2ProvidedByUser: string = '';
@@ -21,12 +21,16 @@ export class ProfilesComparerComponent {
   user1LanguageUsage: { language: string; count: string }[] = [];
   user2LanguageUsage: { language: string; count: string }[] = [];
   winner: string = '';
+  leaderboardData: any[] = [];
 
   constructor(
     private gitHubInfoService: GitHubInfoService,
     private leaderboardService: LeaderboardService
   ) {}
 
+  ngOnInit(): void {
+    this.leaderboardData = this.leaderboardService.getLeaderboardData();
+  }
   async getUserData(userIndex: number) {
     this.winner = '';
     const gitHubName =
@@ -44,9 +48,8 @@ export class ProfilesComparerComponent {
       followers: userDataFromService.followers,
       repos: userDataFromService.repos,
       languages: this.calculateLanguageUsage(userDataFromService.repos),
-  
     };
-    console.log(userDataFromService.repos);
+
     const userLanguageUsage = this.convertCountToPercentage(
       this.convertMapToArray(userCreatedFromGitHubInfoService.languages).sort(
         (a, b) => b.count - a.count
@@ -62,17 +65,21 @@ export class ProfilesComparerComponent {
       this.user2CreatedFromGitHubInfoService = userCreatedFromGitHubInfoService;
       this.user2LanguageUsage = userLanguageUsage;
     }
-    console.log(userCreatedFromGitHubInfoService.repos);
+
     this.anyUserCreated = true;
   }
 
   addToLeaderboard(user: GitHubUser) {
     this.leaderboardService.addUserrToLeaderboard(user);
+    this.leaderboardData = this.leaderboardService.getLeaderboardData();
+  }
+  isInLeaderboard(user: GitHubUser) {
+    return this.leaderboardService.isInLeaderBoard(user);
   }
 
   private calculateForks(repos: Repo[]): number {
     let result = 0;
-    console.log(repos);
+
     if (Array.isArray(repos)) {
       repos.forEach((repo) => {
         result += repo.forks_count;
@@ -132,7 +139,7 @@ export class ProfilesComparerComponent {
     let user2Score = 0;
 
     console.log(this.user1CreatedFromGitHubInfoService);
-    console.log(this.user2CreatedFromGitHubInfoService);
+
     if (
       this.user1CreatedFromGitHubInfoService?.public_repos >
       this.user2CreatedFromGitHubInfoService?.public_repos
@@ -144,8 +151,7 @@ export class ProfilesComparerComponent {
     ) {
       user2Score++;
     }
-    console.log(user1Score);
-    console.log(user2Score);
+
     if (
       this.user1CreatedFromGitHubInfoService?.forks >
       this.user2CreatedFromGitHubInfoService?.forks
@@ -157,8 +163,7 @@ export class ProfilesComparerComponent {
     ) {
       user2Score++;
     }
-    console.log(user1Score);
-    console.log(user2Score);
+
     if (
       this.user1CreatedFromGitHubInfoService?.followers >
       this.user2CreatedFromGitHubInfoService?.followers
@@ -170,8 +175,7 @@ export class ProfilesComparerComponent {
     ) {
       user2Score++;
     }
-    console.log(user1Score);
-    console.log(user2Score);
+
     if (this.user1LanguageUsage.length > this.user2LanguageUsage.length) {
       user1Score++;
     } else if (
@@ -179,8 +183,7 @@ export class ProfilesComparerComponent {
     ) {
       user2Score++;
     }
-    console.log(user1Score);
-    console.log(user2Score);
+
     if (user1Score > user2Score) {
       this.winner = this.user1CreatedFromGitHubInfoService?.login;
     } else if (user2Score > user1Score) {
@@ -188,8 +191,5 @@ export class ProfilesComparerComponent {
     } else {
       this.winner = 'DRAW';
     }
-
-    console.log(user1Score);
-    console.log(user2Score);
   }
 }
